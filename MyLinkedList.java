@@ -22,7 +22,33 @@ public class MyLinkedList{
    return true;
  }
 
- //public void add(int index, String value) {};
+ public void add(int index, String value) {
+  Node newNode = new Node(value);
+
+
+  Node x = start;
+  for (int i = 0; i < index; i++) {
+    x = x.getNext(); //prev node at position
+  }
+
+  if (index == 0) { //start
+    x.setPrev(newNode);
+    newNode.setNext(x);
+    start = newNode;
+  } else if (index == size) {
+    add(value);
+    size--;
+    //x.setNext(newNode);
+    //newNode.setPrev(x);
+    //end = newNode;
+  } else {
+    x.getPrev().setNext(newNode);
+    x.setPrev(newNode);
+    newNode.setPrev(x.getPrev());
+    newNode.setNext(x);
+  }
+  size++;
+ }
 
  //public String get(int index);
  //public String set(int index, String value);
