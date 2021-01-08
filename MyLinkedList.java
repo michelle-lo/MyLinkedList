@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MyLinkedList{
  private int size;
  private Node start,end;
@@ -23,21 +25,26 @@ public class MyLinkedList{
  }
 
  public void add(int index, String value) {
+  if (index < 0 || index > size) {
+    throw new IndexOutOfBoundsException("error! index is out of bounds");
+  }
   Node newNode = new Node(value);
   Node x = start;
   for (int i = 0; i < index; i++) {
     x = x.getNext(); //prev node at position
   }
-
   if (index == 0) { //start
     x.setPrev(newNode);
     newNode.setNext(x);
     start = newNode;
+  } else if (size == 0) {
+    start = newNode;
+    end = newNode;
   } else if (index == size) {
     add(value);
     size--;
-    //x.setNext(newNode);
-    //newNode.setPrev(x);
+    //end.setNext(newNode);
+    //newNode.setPrev(end);
     //end = newNode;
   } else {
     x.getPrev().setNext(newNode);
@@ -49,6 +56,9 @@ public class MyLinkedList{
  }
 
  public String get(int index) {
+   if (index < 0 || index >= size) {
+     throw new IndexOutOfBoundsException("error! index is out of bounds");
+   }
    Node x = start;
    for (int i = 0; i < index; i++) {
      x = x.getNext();
@@ -57,6 +67,9 @@ public class MyLinkedList{
  }
 
  public String set(int index, String value) {
+   if (index < 0 || index >= size) {
+     throw new IndexOutOfBoundsException("error! index is out of bounds");
+   }
     Node x = start;
     for (int i = 0; i < index; i++) {
       x = x.getNext();
@@ -78,5 +91,21 @@ public class MyLinkedList{
     }
     return str + "]";
  }
+
+/*
+ public String toStringReversed() {
+    String str = "[";
+    Node x = end;
+    for (int i = size - 1; i >= 0; i--) {
+      str+= x.getData();
+      if (i > 0) {
+        str += ", ";
+      }
+      x = x.getPrev();
+    }
+
+    return str + "]";
+ }
+ */
  //Any helper method that returns a Node object MUST BE PRIVATE!
 }
