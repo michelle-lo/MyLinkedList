@@ -2,10 +2,27 @@ public class Tester {
   public static void main (String[] args) {
     head("add");
     MyLinkedList a1 = new MyLinkedList();
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 3; i++) {
       a1.add("" + i);
     }
-    print(a1.toString(), "[0, 1, 2, 3, 4, 5]");
+    print(a1.toString(), "[0, 1, 2]");
+
+    MyLinkedList empty = new MyLinkedList();
+    print(empty.toString(), "[]");
+
+    head("add(index, value)");
+    //adding in middle
+    a1.add(2, "1.5");
+    print(a1.toString(), "[0, 1, 1.5, 2]");
+    //adding to front
+    a1.add(0, "-1");
+    print(a1.toString(), "[-1, 0, 1, 1.5, 2]");
+    //adding to end
+    a1.add(5, "3");
+    print(a1.toString(), "[-1, 0, 1, 1.5, 2, 3]");
+
+    head("get");
+    print(a1.get(0), "-1");
   }
   public static void print (Object actual, Object expected) {
     String str = "";

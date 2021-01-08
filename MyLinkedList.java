@@ -24,8 +24,6 @@ public class MyLinkedList{
 
  public void add(int index, String value) {
   Node newNode = new Node(value);
-
-
   Node x = start;
   for (int i = 0; i < index; i++) {
     x = x.getNext(); //prev node at position
@@ -50,7 +48,13 @@ public class MyLinkedList{
   size++;
  }
 
- //public String get(int index);
+ public String get(int index) {
+   Node x = start;
+   for (int i = 0; i < index; i++) {
+     x = x.getNext();
+   }
+   return x.getData();
+ }
  //public String set(int index, String value);
 
  public String toString() {
