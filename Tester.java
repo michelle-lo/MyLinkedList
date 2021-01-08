@@ -23,6 +23,10 @@ public class Tester {
 
     head("get");
     print(a1.get(0), "-1");
+
+    head("set");
+    print(a1.set(0, "-2"), "-1");
+    print(a1.toString(), "[-2, 0, 1, 1.5, 2, 3]");
   }
   public static void print (Object actual, Object expected) {
     String str = "";

@@ -55,7 +55,16 @@ public class MyLinkedList{
    }
    return x.getData();
  }
- //public String set(int index, String value);
+
+ public String set(int index, String value) {
+    Node x = start;
+    for (int i = 0; i < index; i++) {
+      x = x.getNext();
+    }
+    String temp = x.getData();
+    x.setData(value);
+    return temp;
+ }
 
  public String toString() {
     String str = "[";
