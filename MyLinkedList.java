@@ -28,28 +28,27 @@ public class MyLinkedList{
   if (index < 0 || index > size) {
     throw new IndexOutOfBoundsException("error! index is out of bounds");
   }
+
   Node newNode = new Node(value);
   Node x = start;
   for (int i = 0; i < index; i++) {
     x = x.getNext(); //prev node at position
   }
-  if (index == 0) { //start
-    x.setPrev(newNode);
-    newNode.setNext(x);
-    start = newNode;
-  } else if (size == 0) {
+  if (size == 0) { //empty
     start = newNode;
     end = newNode;
-  } else if (index == size) {
-    add(value);
-    size--;
-    //end.setNext(newNode);
-    //newNode.setPrev(end);
-    //end = newNode;
+  } else if (index == 0) { //start
+    start.setPrev(newNode);
+    newNode.setNext(start);
+    start = newNode;
+  } else if (index == size) { 
+    newNode.setPrev(end);
+    end.setNext(newNode);
+    end = newNode;
   } else {
     x.getPrev().setNext(newNode);
-    x.setPrev(newNode);
     newNode.setPrev(x.getPrev());
+    x.setPrev(newNode);
     newNode.setNext(x);
   }
   size++;
@@ -92,7 +91,7 @@ public class MyLinkedList{
     return str + "]";
  }
 
-/*
+
  public String toStringReversed() {
     String str = "[";
     Node x = end;
@@ -106,6 +105,6 @@ public class MyLinkedList{
 
     return str + "]";
  }
- */
+
  //Any helper method that returns a Node object MUST BE PRIVATE!
 }
