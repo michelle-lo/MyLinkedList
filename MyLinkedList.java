@@ -82,6 +82,26 @@ public class MyLinkedList{
     return str + "]";
  }
 
+ public String remove(int index) {
+   Node x = nodePos(index);
+   String temp = x.getData();
+   if (size == 1) {
+     start = null;
+     end = null;
+   } else if (index == 0) { //head
+     start.getNext().setPrev(null);
+     start = start.getNext();
+   } else if (index == size - 1) {
+     end.getPrev().setNext(null);
+     end = end.getPrev();
+   } else {
+     x.getNext().setPrev(x.getPrev());
+     x.getPrev().setNext(x.getNext());
+   }
+   size--;
+   return temp;
+ }
+
 
  public String toStringReversed() {
     String str = "[";
@@ -104,5 +124,5 @@ public class MyLinkedList{
    }
    return x;
  }
- //Any helper method that returns a Node object MUST BE PRIVATE!
+
 }
