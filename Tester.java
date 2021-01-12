@@ -99,6 +99,60 @@ public class Tester {
     a3.remove(0);
     print(a3.toString(), "[]");
 
+    head("extend");
+    a2.add("yes");
+    a2.add("lmao");
+    System.out.println("a1: " + a1.toString());
+    System.out.println("a2: " + a2.toString());
+    a1.extend(a2);
+    //"regular" cases
+    print(a1.toString(), "[0, 1.5, 2, no, yes, lmao]");
+    print(a2.toString(), "[]");
+    //two emptys
+    MyLinkedList empty1 = new MyLinkedList();
+    System.out.println("empty: " + empty.toString());
+    System.out.println("empty1: " + empty1.toString());
+    empty.extend(empty1);
+    print(empty.toString(), "[]");
+
+    MyLinkedList single = new MyLinkedList();
+    single.add("lonely");
+    //this empty, other not
+    System.out.println("empty: " + empty.toString());
+    System.out.println("single: " + single.toString());
+    empty.extend(single);
+    print(empty.toString(),"[lonely]");
+    print(single.toString(),"[]");
+    //this full, other empty
+
+    MyLinkedList alone = new MyLinkedList();
+    alone.add("forever");
+    System.out.println("alone: " + alone.toString());
+    System.out.println("empty1: " + empty1.toString());
+    alone.extend(empty1);
+    print(alone.toString(), "[forever]");
+    print(empty1.toString(), "[]");
+
+    head("class tester!!");
+    MyLinkedList a = new MyLinkedList();
+    MyLinkedList b = new MyLinkedList();
+    for(int i = 0; i < 10; i++){
+      if(i < 5){
+        a.add(i+"");
+      }else{
+        b.add(i+"");
+      }
+    }
+    System.out.println();
+    System.out.println("A:"+a+a.size());
+    System.out.println("B:"+b+b.size());
+
+    a.extend(b);
+    System.out.println("A:"+a+a.size());
+    System.out.println("B:"+b+b.size());
+    System.out.println("A reversed:"+a.toStringReversed()+a.size());
+    System.out.println("B reversed:"+b.toStringReversed()+b.size());
+
   }
   public static void print (Object actual, Object expected) {
     String str = "";

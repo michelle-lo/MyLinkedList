@@ -28,10 +28,9 @@ public class MyLinkedList{
   if (index < 0 || index > size) {
     throw new IndexOutOfBoundsException("error! index is out of bounds");
   }
-
   Node newNode = new Node(value);
   Node x = nodePos(index);
-  if (size == 0) { //empty
+  if (size == 0) { 
     start = newNode;
     end = newNode;
   } else if (index == 0) { //start
@@ -105,6 +104,26 @@ public class MyLinkedList{
    return temp;
  }
 
+
+ public void extend(MyLinkedList other){
+   if (size == 0 && other.size == 0) {
+     start = null;
+     end = null;
+   } else if (size == 0) {
+     start = other.start;
+     end = other.end;
+   } else if (other.size == 0) {
+     end.setNext(null);
+   } else {
+     end.setNext(other.start);
+     other.start.setPrev(end);
+     end = other.end;
+   }
+   size += other.size;
+   other.size = 0;
+   other.start = null;
+   other.end = null;
+ }
 
  public String toStringReversed() {
     String str = "[";
